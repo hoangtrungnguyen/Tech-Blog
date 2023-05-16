@@ -1,0 +1,30 @@
+<div class="entry-photo__image clear-fix">
+    <div class="row align-items-center">
+        <!--                        icon-->
+        <div class="col-1">
+            <i style="font-size: 2rem;" class="bi bi-camera"></i>
+        </div>
+        <!-- header -->
+        <div class="col-11 align-items-center row">
+
+            <h4 class="col-8">
+                Photo
+            </h4>
+            <div class="col-3">
+                <p th:text="${entry.publishedDate}" class="text-end">
+                    16-11-2022
+                </p>
+            </div>
+
+        </div>
+
+        <div class="col-1"></div>
+        <!-- Content -->
+        <div class="img col-11">
+            <img th:src="${entry.desPic}"
+                 class="entry-photo__image" alt="card cover"/>
+        </div>
+
+
+    </div>
+</div>

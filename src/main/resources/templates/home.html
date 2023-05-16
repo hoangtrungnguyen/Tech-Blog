@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="/static/main.css"/>
+    <style>
+        .header-bkg {
+            background: lightblue;
+
+        }
+
+        .entry-normal {
+        }
+
+        .entry-quote {
+            min-height: 300px;
+
+        }
+
+        .entry-photo__image {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .card-resizable-image {
+            position: sticky;
+            max-width: 50%;
+            height: auto;
+            float: left;
+            margin-right: 10px;
+            border-radius: 8px;
+        }
+
+        /* Media Query for smaller screens */
+        @media (max-width: 768px) {
+            .card-resizable-image {
+                max-width: 100%;
+            }
+
+            .entry-preview {
+                padding-top: 20px
+            }
+        }
+
+        /* Media Query for larger screens */
+        @media (min-width: 1200px) {
+            .card-resizable-image {
+                max-width: 50%;
+                max-height: 300px;
+            }
+        }
+
+
+        .quote-block {
+            border-right: 4px solid #333;
+            padding: 10px;
+            font-style: italic;
+            text-align: right;
+        }
+
+        .quote-block__author {
+            font-size: 1.2em;
+        }
+
+
+        .clear-fix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+<body class="">
+
+<header class="container-fluid header-bkg">
+    <h2>Blogging about my life</h2>
+    <p>Welcome to my blog</p>
+
+    <nav class="p-0 navbar navbar-expand-lg navbar-light bg-light">
+        <div class="header-bkg container-fluid p-0 pb-2">
+            <a class="navbar-brand" href="#">Logo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item" th:class="${active == 'home' ? 'fw-bold' : ''}">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item" th:class="${active == 'contact' ? 'fw-bold' : ''}">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+<section class="pt-4">
+    <div class="container-fluid">
+        <h3>My Blog</h3>
+        <div class="row pt-4">
+            <div class="col-md-9 pb-4">
+
+
+                <div class th:each="entry : ${entries}">
+                    <th:block th:switch="${entry.type.toString()}">
+                        <div th:case="'NORMAL'">
+                            <div th:insert="normal_entry.html" th:with="entry=${entry}"></div>
+                        </div>
+                        <div  th:case="'IMAGE'">
+                            <div th:insert="photo_entry.html" th:with="entry=${entry}"></div>
+                        </div>
+                        <div  th:case="'QUOTE'">
+                            <div th:insert="quote_entry.html" th:with="entry=${entry}"></div>
+                        </div>
+                        <p th:case="*">The type is unknown.</p>
+                    </th:block>
+                </div>
+            </div>
+
+
+            <div class="side-nav col-md-3">
+                <div class="card">
+                    <div class="share-option">
+                        <div class="card-body">
+                            <h5 class="card-title">Share this page</h5>
+
+                            <ul>
+                                <li>Share on Facebook</li>
+                                <li>Share on Twitter</li>
+                                <li>Share on Google</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    <div>
+        <a>Overview</a>
+    </div>
+    <div>
+        <p>Total Page: 1000</p>
+    </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
