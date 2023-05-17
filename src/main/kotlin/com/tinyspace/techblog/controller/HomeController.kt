@@ -37,9 +37,11 @@ class HomeController(
                 type
             )
         }.toList()
+        val totalPageRead = entryRepository.count()
 
         model.addAttribute("active", "home")
         model.addAttribute("entries" , entries)
+        model.addAttribute("total_page_read", totalPageRead)
         return "home"
     }
 

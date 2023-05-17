@@ -1,8 +1,6 @@
 package com.tinyspace.techblog.model
 
-class OverviewEntry(
-    val title: String
-) {
-
-
-}
+data class OverviewEntry(
+    val title: String,
+    val publishedDate: String,
+)
