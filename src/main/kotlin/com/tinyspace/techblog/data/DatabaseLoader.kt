@@ -2,6 +2,7 @@ package com.tinyspace.techblog.data
 
 
 import com.tinyspace.techblog.data.model.Entry
+import com.tinyspace.techblog.data.model.Owner
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -12,7 +13,7 @@ import org.slf4j.LoggerFactory
 internal class LoadDatabase {
 
     @Bean
-    fun initDatabase(repository: EntryRepository): CommandLineRunner {
+    fun initDatabase(repository: EntryRepository, ownerRepository: OwnerRepository): CommandLineRunner {
         return CommandLineRunner { args: Array<String?>? ->
             log.info("Preloading " + repository.save(Entry(1,"Bilbo Baggins", content_1, "2022-03-12", img_1, "2023-01-01")))
             log.info("Preloading " + repository.save(Entry(3,"Main HTML", content_2, "2022-03-12", img_2,
@@ -20,6 +21,7 @@ internal class LoadDatabase {
                 type = "QUOTE")))
             log.info("Preloading " + repository.save(Entry(2,"Intellij", content_3,
                 "2022-03-12", img_3, "2023-01-01", type = "IMAGE")))
+            log.info("Preloading " + ownerRepository.save(Owner(1, "Han Sara", u_intro)))
         }
     }
 
@@ -46,3 +48,10 @@ const val content_3 = "\n" +
         "To include another HTML file and pass an argument to it using Thymeleaf, you can use the Thymeleaf th:include attribute and the th:with attribute.\n" +
         "\n" +
         "Assuming you have two HTML files: main.html and included.html, here's how you can include included.html into main.html and pass an argument to it:"
+
+const val u_intro =  "Lorem Ipsum s simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n" +
+        "\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n" +
+        "\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n" +
+        "\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n" +
+        "\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n" +
+        "\n"

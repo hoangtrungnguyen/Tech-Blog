@@ -1,0 +1,25 @@
+<header class="container-fluid header-bkg">
+    <h2>Blogging about my life</h2>
+    <p>Welcome to my blog</p>
+
+    <nav class="p-0 navbar navbar-expand-lg navbar-light bg-light">
+        <div class="header-bkg container-fluid p-0 pb-2">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item" th:class="${active == 'home' ? 'fw-bold' : ''}">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item" th:class="${active == 'about-me' ? 'fw-bold' : ''}">
+                        <a class="nav-link" href="/about-me">About Me</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
