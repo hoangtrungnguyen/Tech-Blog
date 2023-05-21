@@ -35,8 +35,10 @@ class HomeController(
                 it.title,
                 it.imageUrl,
                 it.createdTime,
-                if(it.content.length > 400) it.content.slice(0..400) else it.content,
-                type
+                entryContent = if(it.content.length > 400) it.content.slice(0..400) else it.content,
+                type = type,
+
+
             )
         }.toList()
         val totalPageRead = entryRepository.count()
@@ -62,13 +64,24 @@ class HomeController(
                         desPic = it.imageUrl,
                         publishedDate = it.publishedDate,
                         entryDetail = it.content,
-                        type = type
+                        type = type,
+                entryContent = it.content
             )
-        }
+        }.get()
+        val totalPageRead = entryRepository.count()
+
+
+        model.addAttribute("active", "home")
         model.addAttribute("entry", entry)
+        model.addAttribute("total_page_read", totalPageRead)
         return "entry_detail"
     }
 
+
+    @GetMapping
+    fun notfound():String{
+        return "not-found"
+    }
 
     companion object {
         private val log: Logger = LoggerFactory.getLogger(LoadDatabase::class.java)

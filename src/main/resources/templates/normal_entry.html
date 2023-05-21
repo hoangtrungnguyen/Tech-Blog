@@ -9,7 +9,9 @@
 
         <div class="col-11 align-items-center row align-items-center">
             <div class="col-9">
-                <h4 th:text="${entry.title}" class="d-inline" ></h4>
+                <h4 class="d-inline" >
+                    <a th:text="${entry.title}" th:href="@{entry/${entry.id}}"></a>
+                </h4>
             </div>
 
             <div class="col-3">

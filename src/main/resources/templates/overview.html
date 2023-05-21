@@ -91,7 +91,7 @@
 
                 <div class="row" th:each="entry : ${entries}">
                     <div class="col-10">
-                        <a href="*" th:text="${entry.title}"></a>
+                        <a th:text="${entry.title}" th:href="@{entry/${entry.id}}"></a>
                     </div>
                     <p class="col-2" th:text="${entry.publishedDate}">
 

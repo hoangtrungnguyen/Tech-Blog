@@ -1,8 +1,12 @@
 package com.tinyspace.techblog.model
 
-data class HomeEntry(val title: String,
-                     val desPic: String,
-                     val publishedDate: String,
-                     val entryContent: String,
-                     val type: EntryType
-)
+data class HomeEntry(
+    override val title: String,
+    override val desPic: String,
+    override val publishedDate: String,
+    override val type: EntryType,
+    val entryContent: String,
+) : BaseEntry(
+
+){
+}

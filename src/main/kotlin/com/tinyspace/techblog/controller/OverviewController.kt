@@ -22,16 +22,16 @@ class OverviewController(
         val entries = entryModels.map {
             OverviewEntry(
                 it.title,
-                it.publishedDate
+                it.publishedDate,
+            id = it.id.toString()
             )
         }.toList()
 
         val totalPageRead = entryRepository.count()
 
         model.addAttribute("entries", entries )
-        model.addAttribute("active", "overview")
         model.addAttribute("total_page_read", totalPageRead)
-
+        model.addAttribute("active", "home")
         return "overview"
     }
 

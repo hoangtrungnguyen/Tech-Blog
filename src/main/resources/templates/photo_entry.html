@@ -6,7 +6,9 @@
         </div>
         <!-- header -->
         <div class="col-11 row align-items-center">
-            <h4 class="col-8">Photo</h4>
+            <h4 class="col-8">
+                <a th:text="${entry.title}" th:href="@{entry/${entry.id}}"></a>
+            </h4>
             <div class="col-4 p-0">
                 <p th:text="${entry.publishedDate}" class="text-end"></p>
             </div>

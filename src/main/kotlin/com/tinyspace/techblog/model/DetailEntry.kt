@@ -6,5 +6,6 @@ data class DetailEntry(
     override val publishedDate: String,
     val entryDetail: String,
     override val type: EntryType,
-) : BaseEntry() {
+    val entryContent: String,
+    ) : BaseEntry() {
 }
