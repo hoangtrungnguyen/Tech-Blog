@@ -1,6 +1,7 @@
 package com.tinyspace.techblog.data
 
 
+import com.tinyspace.techblog.controller.dateFromString
 import com.tinyspace.techblog.data.model.Entry
 import com.tinyspace.techblog.data.model.Owner
 import org.springframework.boot.CommandLineRunner
@@ -8,6 +9,8 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.time.Instant
+import java.util.*
 
 @Configuration
 internal class LoadDatabase {
@@ -15,12 +18,12 @@ internal class LoadDatabase {
     @Bean
     fun initDatabase(repository: EntryRepository, ownerRepository: OwnerRepository): CommandLineRunner {
         return CommandLineRunner { args: Array<String?>? ->
-            log.info("Preloading " + repository.save(Entry(1,"Bilbo Baggins", content_1, "2022-03-12", img_1, "2023-01-01")))
-            log.info("Preloading " + repository.save(Entry(3,"Main HTML", content_2, "2022-03-12", img_2,
-                "2023-01-01",
+            log.info("Preloading " + repository.save(Entry(1,"Bilbo Baggins", content_1, Date(), img_1, "2023-01-01".dateFromString())))
+            log.info("Preloading " + repository.save(Entry(3,"Main HTML", content_2,  Date(), img_2,
+                Date(),
                 type = "QUOTE")))
             log.info("Preloading " + repository.save(Entry(2,"Intellij", content_3,
-                "2022-03-12", img_3, "2023-01-01", type = "IMAGE")))
+               "2022-03-12".dateFromString(), img_3, "2022-01-01".dateFromString(), type = "IMAGE")))
             log.info("Preloading " + ownerRepository.save(Owner(1, "Han Sara", u_intro)))
         }
     }

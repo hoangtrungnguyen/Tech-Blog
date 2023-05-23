@@ -6,6 +6,7 @@ data class HomeEntry(
     override val publishedDate: String,
     override val type: EntryType,
     val entryContent: String,
+    val id: String,
 ) : BaseEntry(
 
 ){

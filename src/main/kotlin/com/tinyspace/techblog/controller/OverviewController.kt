@@ -7,6 +7,7 @@ import com.tinyspace.techblog.model.HomeEntry
 import com.tinyspace.techblog.model.OverviewEntry
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
@@ -18,14 +19,14 @@ class OverviewController(
 ) {
     @GetMapping("/overview")
     fun overview(model: Model): String{
-        val entryModels = entryRepository.findAll()
-        val entries = entryModels.map {
+        val entryModels = entryRepository.findAllByOrderByPublishedDateDesc(Pageable.unpaged())
+        val entries = entryModels?.map {
             OverviewEntry(
                 it.title,
-                it.publishedDate,
+                it.publishedDate.formatTime(),
             id = it.id.toString()
             )
-        }.toList()
+        }?.toList() ?: emptyList()
 
         val totalPageRead = entryRepository.count()
 
